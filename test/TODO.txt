@@ -1,0 +1,24 @@
+
+4. Timeout/rejoin, put back on old character!
+5. Character name/selection
+6. Fix raycast on bullets
+7. Organize please! And add comments!
+
+
+
+
+
+DONE: 
+1. Remove players on disconnect
+2. Disconnect if server goes down
+-  Changed Net code a bit to be easier to maintain and read.. kinda
+4. Textbox panel/Focus implementation for all panels
+- Timeout/rejoin, 
+
+
+
+
+
+More work later:
+
+3. Server sided shooting
