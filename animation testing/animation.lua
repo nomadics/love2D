@@ -2,6 +2,7 @@ gr = love.graphics
 
 animations = {}
 
+--Run update function on all animations
 function updateAnimations(dt)
 
 	for v,i in pairs(animations) do
@@ -10,6 +11,7 @@ function updateAnimations(dt)
 	
 end
 
+--Pre-defined values and functions
 local animmeta = {}
 animmeta.quad = gr.newQuad(0,0,0,0,0,0)
 animmeta.rows = 1
@@ -74,7 +76,7 @@ end
 --update the time and see if we should update the viewPort
 animmeta.update = function(self,dt)
 	self.timeLeft = self.timeLeft - dt
-	if (self.timeLeft < 0) then
+	if (self.timeLeft < 0) then--Has enough time passed to change the frame?
 		self.timeLeft = self.t/1000--It is in milleseconds, convert to seconds
 		--Update our row/column position
 		self.currentColumn = self.currentColumn + 1
@@ -87,6 +89,7 @@ animmeta.update = function(self,dt)
 			self.currentRow = 1
 		end
 		
+		--Figure out where we are on the sprite sheet!
 		local rw,rh = self.img:getDimensions()
 		
 		local w = (rw/self.columns)
@@ -100,6 +103,7 @@ animmeta.update = function(self,dt)
 		w = math.floor(w-off*2)
 		h = math.floor(h-off*2)
 		
+		--Update ourselves accordingly
 		self.quad:setViewport(x+off, y+off, w, h)
 		
 	end
@@ -107,12 +111,15 @@ end
 
 animmeta.draw = function(self)
 	if self.obj then
+		--Our "real" x,y
 		local x = self.obj.x
 		local y = self.obj.y
 	
+		--Object's width and height
 		local w = self.obj.w
 		local h = self.obj.h
 	
+		--spritesheet's tile width and height and width height ratio
 		local sx = w/self.w
 		local sy = h/self.h
 		
@@ -121,6 +128,7 @@ animmeta.draw = function(self)
 
 end
 
+--Remove our animation from updating.
 animmeta.remove = function(self)
 	for v,i in pairs(animations) do
 		if i==self then
